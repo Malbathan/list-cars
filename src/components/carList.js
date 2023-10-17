@@ -1,5 +1,17 @@
 import React, { useState } from "react";
 
+import { 
+  CarListContainer, 
+  FilterLabel,
+  FilterOption,
+  CarItem,
+  CarName,
+  FilterOptions,
+  FiltersContainer,
+  CarsContainer,
+  TitleContainer
+} from "./styles" 
+
 const CarList = ({ brands, cars }) => {
   const [selectedBrand, setSelectedBrand] = useState("TODOS");
   const [selectedYearFilters, setSelectedYearFilters] = useState([]);
@@ -51,85 +63,91 @@ const CarList = ({ brands, cars }) => {
   const filteredCars = filterCars();
 
   return (
-    <div>
-      <h1>Lista de Carros</h1>
-      <div>
-        <label>Filtrar por Marca:</label>
-        <select onChange={(e) => handleBrandFilter(e.target.value)}>
-          <option value="TODOS">Todos</option>
-          {brands.map((brand) => (
-            <option key={brand.id} value={brand.id}>
-              {brand.name}
-            </option>
-          ))}
-        </select>
-      </div>
-      <div>
-        <label>Filtrar por Ano:</label>
+    <CarListContainer>
+      <TitleContainer>Lista de Carros</TitleContainer>
+      <FiltersContainer>
+        <div>
+          <FilterLabel>Filtrar por Marca:</FilterLabel>
+          <select onChange={(e) => handleBrandFilter(e.target.value)}>
+            <option value="TODOS">Todos</option>
+            {brands.map((brand) => (
+              <option key={brand.id} value={brand.id}>
+                {brand.name}
+              </option>
+            ))}
+          </select>
+        </div>
+        <div>
+          <FilterLabel>Filtrar por Ano:</FilterLabel>
+          
+          <FilterOptions>
+            {[2014, 2015, 1993].map((year) => (
+              <FilterOption key={year}>
+                <label>
+                  <input
+                    type="checkbox"
+                    value={year}
+                    checked={selectedYearFilters.includes(year)}
+                    onChange={() => handleYearFilter(year)}
+                  />
+                  {year}
+                </label>
+              </FilterOption>
+            ))}
+          </FilterOptions>
+        </div>
+        <div>
+          <FilterLabel>Filtrar por Combustível:</FilterLabel>
+          <FilterOptions>
+            {["FLEX", "DIESEL"].map((fuel) => (
+              <FilterOption key={fuel}>
+                <label>
+                  <input
+                    type="checkbox"
+                    value={fuel}
+                    checked={selectedFuelFilters.includes(fuel)}
+                    onChange={() => handleFuelFilter(fuel)}
+                  />
+                  {fuel}
+                </label>
+              </FilterOption>
+            ))}
+          </FilterOptions>
+        </div>
+        <div>
+          <FilterLabel>Filtrar por Cor:</FilterLabel>
+          <FilterOptions>
+            {["BRANCA", "PRETO", "AZUL", "BEGE"].map((color) => (
+              <FilterOption key={color}>
+                <label>
+                  <input
+                    type="checkbox"
+                    value={color}
+                    checked={selectedColorFilters.includes(color)}
+                    onChange={() => handleColorFilter(color)}
+                  />
+                  {color}
+                </label>
+              </FilterOption>
+            ))}
+          </FilterOptions>
+        </div>
+      </FiltersContainer>
+
+      <CarsContainer>    
         <ul>
-          {[2014, 2015, 1993].map((year) => (
-            <li key={year}>
-              <label>
-                <input
-                  type="checkbox"
-                  value={year}
-                  checked={selectedYearFilters.includes(year)}
-                  onChange={() => handleYearFilter(year)}
-                />
-                {year}
-              </label>
-            </li>
+          {filteredCars.map((car) => (
+            <CarItem key={car.id}>
+              <CarName>{car.nome_modelo}</CarName>
+              <p>Ano: {car.ano}</p>
+              <p>Combustível: {car.combustivel}</p>
+              <p>Cor: {car.cor}</p>
+              <p>Valor: R$ {car.valor}</p>
+            </CarItem>
           ))}
         </ul>
-      </div>
-      <div>
-        <label>Filtrar por Combustível:</label>
-        <ul>
-          {["FLEX", "DIESEL"].map((fuel) => (
-            <li key={fuel}>
-              <label>
-                <input
-                  type="checkbox"
-                  value={fuel}
-                  checked={selectedFuelFilters.includes(fuel)}
-                  onChange={() => handleFuelFilter(fuel)}
-                />
-                {fuel}
-              </label>
-            </li>
-          ))}
-        </ul>
-      </div>
-      <div>
-        <label>Filtrar por Cor:</label>
-        <ul>
-          {["BRANCA", "PRETO", "AZUL", "BEGE"].map((color) => (
-            <li key={color}>
-              <label>
-                <input
-                  type="checkbox"
-                  value={color}
-                  checked={selectedColorFilters.includes(color)}
-                  onChange={() => handleColorFilter(color)}
-                />
-                {color}
-              </label>
-            </li>
-          ))}
-        </ul>
-      </div>
-      <ul>
-        {filteredCars.map((car) => (
-          <li key={car.id}>
-            <h2>{car.nome_modelo}</h2>
-            <p>Ano: {car.ano}</p>
-            <p>Combustível: {car.combustivel}</p>
-            <p>Cor: {car.cor}</p>
-            <p>Valor: R$ {car.valor}</p>
-          </li>
-        ))}
-      </ul>
-    </div>
+      </CarsContainer>    
+    </CarListContainer>
   );
 };
 
