@@ -1,4 +1,7 @@
 import React, { useState } from "react";
+import CarModal from "./carInfo";
+
+import BannerCarousel from "./carousel"
 
 import { 
   CarListContainer, 
@@ -9,7 +12,11 @@ import {
   FilterOptions,
   FiltersContainer,
   CarsContainer,
-  TitleContainer
+  List,
+  BannerContainer,
+  CardImage,
+  FilterTitle,
+  Button
 } from "./styles" 
 
 const CarList = ({ brands, cars }) => {
@@ -18,8 +25,22 @@ const CarList = ({ brands, cars }) => {
   const [selectedFuelFilters, setSelectedFuelFilters] = useState([]);
   const [selectedColorFilters, setSelectedColorFilters] = useState([]);
 
+  const [showModal, setShowModal] = useState(false);
+  const [selectedCar, setSelectedCar] = useState(null);
+
+  const banners = {
+    1 : "https://quatrorodas.abril.com.br/wp-content/uploads/2023/06/P90509733_highRes_bmw-x1-m35i-m-1-1-e1688068253589.jpg?quality=70&strip=info",
+    2 : "https://quatrorodas.abril.com.br/wp-content/uploads/2023/07/mercedes-benz_cle-klasse_amg_lin-1-e1688585989690.jpg?quality=70&strip=info&w=1280&h=720&crop=1",
+    3 : "https://cdn.motor1.com/images/mgl/jlxXO6/s1/audi-rs7-sportback-performance.webp"
+  }
+
   const handleBrandFilter = (brand) => {
     setSelectedBrand(brand);
+  };
+
+  const openModal = (car) => {
+    setSelectedCar(car.modelo_id);
+    setShowModal(true);
   };
 
   const handleYearFilter = (year) => {
@@ -64,8 +85,11 @@ const CarList = ({ brands, cars }) => {
 
   return (
     <CarListContainer>
-      <TitleContainer>Lista de Carros</TitleContainer>
+      <BannerContainer>
+        <BannerCarousel banners={banners}/>
+      </BannerContainer>
       <FiltersContainer>
+        <FilterTitle> Filtros </FilterTitle>
         <div>
           <FilterLabel>Filtrar por Marca:</FilterLabel>
           <select onChange={(e) => handleBrandFilter(e.target.value)}>
@@ -135,18 +159,26 @@ const CarList = ({ brands, cars }) => {
       </FiltersContainer>
 
       <CarsContainer>    
-        <ul>
+        <List>
           {filteredCars.map((car) => (
-            <CarItem key={car.id}>
+            <CarItem key={car.id} onClick={() => openModal(car)}>
+              
+              <CardImage src={process.env.PUBLIC_URL + car.image} alt="imagem de um carro" />
               <CarName>{car.nome_modelo}</CarName>
-              <p>Ano: {car.ano}</p>
-              <p>Combustível: {car.combustivel}</p>
-              <p>Cor: {car.cor}</p>
-              <p>Valor: R$ {car.valor}</p>
+              <p>{car.ano}</p>
+              <p>R${car.valor}</p>
+              <Button> Detalhes</Button>
             </CarItem>
           ))}
-        </ul>
-      </CarsContainer>    
+        </List>
+
+        {showModal && (
+        <CarModal selectedCarId={selectedCar} onClose={() => setShowModal(false)} />
+        )}
+      </CarsContainer> 
+
+      
+
     </CarListContainer>
   );
 };

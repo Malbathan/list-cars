@@ -25,8 +25,9 @@
          "num_portas" : 4,
          "cor": "BRANCA",
          "nome_modelo" : "ETIOS",
-         "valor" : 36.000,
-         "brand":1
+         "valor" : 36000,
+         "brand":1,
+         "image" : "https://pensecarros.com.br/cms/uploads/toyota-etios-1-5-x-sedan-16v-flex-4p-automatico-605aa2619e6de.png"
         },
         {
 
@@ -38,8 +39,9 @@
          "num_portas" : 4,
          "cor": "PRETO",
          "nome_modelo" : "COROLLA",
-         "valor" : 120.000, 
-         "brand":1
+         "valor" : 120000, 
+         "brand":1,
+         "image" : "https://www.seekpng.com/png/full/404-4049975_corolla-preto-png-toyota-corolla-altis.png"
         },
         {
 
@@ -51,8 +53,9 @@
          "num_portas" : 4,
          "cor": "AZUL",
          "nome_modelo" : "HILLUX SW4",
-         "valor" : 47.500,
-         "brand":1
+         "valor" : 47500,
+         "brand":1,
+         "image" : "https://www.autogrifmotors.com.br/carros/b04f5a740736ef52c0940a4f1950092e-thumbjpeg-toyota-hilux-sw4-9189101-900-675-70.jpg"
         },
         {
 
@@ -64,8 +67,9 @@
           "num_portas" : 4,
           "cor": "BEGE",
           "nome_modelo" : "ONIX PLUS",
-          "valor" : 50.000 ,
-          "brand": 3
+          "valor" : 50000 ,
+          "brand": 3,
+          "image" : "https://jorlan.com/go/uploads/products/gmcwh2035-pg020-mdv-1ed69-5lt-lhd-gaz.png"
          },
          {
  
@@ -77,8 +81,9 @@
           "num_portas" : 4,
           "cor": "AZUL",
           "nome_modelo" : "JETTA",
-          "valor" : 49.000,
-          "brand":2
+          "valor" : 49000,
+          "brand":2,
+          "image" : "https://i.pinimg.com/736x/9e/3b/fd/9e3bfd0480e8d4439dcaeaa4b0869765.jpg"
          }
     ]
 

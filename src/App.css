@@ -1,5 +1,13 @@
+@import url('https://fonts.googleapis.com/css?family=Roboto+Mono&display=swap');
+
+body *{
+  caret-color: transparent;
+  font-family: Roboto Mono;
+}
+
 .App {
   text-align: center;
+  background-color: #292929;
 }
 
 .App-logo {
