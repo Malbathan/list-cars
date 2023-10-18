@@ -6,7 +6,7 @@ MVP de um projeto que lista carros a partir de um JSON contendo informações re
 
 Baixe o repositório e localmente instale as dependencias na raiz do projeto.
 
-### `yarn ` ou ###`yarn install`
+### `yarn ` ou `yarn install`
 
 Com as dependencias instaladas, rode o projeto localmente.
 
